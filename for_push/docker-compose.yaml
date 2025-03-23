@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  telecom-service:
+    build: telecom1000k-notebook (4).ipynb
+    container_name: telecom-service
+    restart: always
+    environment:
+      ZIP_PATH: "telecom1000k_wo_result.zip"
+      EXTRACT_TO: "extracted_files"
+    volumes:
+      - ./data:/data
+    networks:
+      - telecom-net
+    depends_on:
+      - some-other-service
+
+networks:
+  telecom-net:
+    driver: bridge
+
